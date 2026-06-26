@@ -7,7 +7,7 @@ const PLANS = [
         name: 'Scan',
         emoji: '🔍',
         icon: 'fa-search',
-        price: '₹41,999',
+        price: '₹4,999',
         period: 'one-time',
         desc: 'Full business diagnosis – no guesswork',
         color: 'cyan',
@@ -25,7 +25,7 @@ const PLANS = [
         name: 'Solve',
         emoji: '⚡',
         icon: 'fa-tools',
-        price: '₹2,49,999',
+        price: '₹14,999',
         period: 'month',
         desc: 'Fix what\'s broken, fast',
         color: 'blue',
@@ -44,7 +44,7 @@ const PLANS = [
         name: 'Scale',
         emoji: '🚀',
         icon: 'fa-rocket',
-        price: '₹4,99,999',
+        price: '₹29,999',
         period: 'month',
         desc: 'Full‑scale partnership for exponential growth',
         color: 'violet',
@@ -60,6 +60,7 @@ const PLANS = [
         cta: 'Start Scaling',
     },
 ];
+
 
 export default function Pricing() {
     const [modalOpen, setModalOpen] = useState(false);
