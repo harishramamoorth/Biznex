@@ -1,0 +1,13 @@
+.service-row {
+  transition: background-color 0.3s ease;
+}
+.service-row:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+.service-indicator {
+  width: 0;
+  transition: width 0.4s ease;
+}
+.service-row:hover .service-indicator {
+  width: 100%;
+}

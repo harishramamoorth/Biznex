@@ -1,0 +1,79 @@
+/* Hide default cursor on devices that support hover */
+@media (hover: hover) and (pointer: fine) {
+  body, 
+  body *,
+  a, 
+  button,
+  .cursor-pointer {
+    cursor: none !important;
+  }
+}
+
+/* Custom Cursor Base Styles */
+.custom-cursor-dot,
+.custom-cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Colorful glowing animation */
+@keyframes rainbowGlow {
+  0% { filter: hue-rotate(0deg) drop-shadow(0 0 10px #3b82f6); }
+  50% { filter: hue-rotate(180deg) drop-shadow(0 0 20px #ec4899); }
+  100% { filter: hue-rotate(360deg) drop-shadow(0 0 10px #3b82f6); }
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.custom-cursor-dot {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  animation: rainbowGlow 4s linear infinite;
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+.custom-cursor-outline {
+  width: 44px;
+  height: 44px;
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box, 
+              linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899) border-box;
+  animation: spin 3s linear infinite, rainbowGlow 4s linear infinite;
+  opacity: 0.7;
+  /* Add a slight spring physics effect */
+  transition-property: width, height, border-color, background, opacity;
+  transition-duration: 0.15s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover States */
+.custom-cursor-dot.hovering {
+  width: 0px;
+  height: 0px;
+}
+
+.custom-cursor-outline.hovering {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(236, 72, 153, 0.4)) border-box;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+  opacity: 1;
+}
+
+/* Disable custom cursor on touch devices */
+@media (max-width: 768px) {
+  .custom-cursor-dot,
+  .custom-cursor-outline {
+    display: none !important;
+  }
+}

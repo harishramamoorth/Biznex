@@ -1,0 +1,34 @@
+.payment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.payment-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.payment-modal {
+  background: white;
+  border-radius: 2rem;
+  max-width: 480px;
+  width: 100%;
+  padding: 2rem;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.payment-modal-overlay.open .payment-modal {
+  transform: scale(1) translateY(0);
+}

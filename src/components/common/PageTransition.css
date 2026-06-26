@@ -1,0 +1,55 @@
+/* ─── Page Transition Animations ─── */
+
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 0.8;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes pageExit {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px) scale(1.01);
+  }
+}
+
+.page-transition-wrapper {
+  animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+/* Optional overlay shimmer on route change */
+.page-transition-wrapper::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.06) 0%,
+    rgba(168, 85, 247, 0.04) 50%,
+    transparent 100%
+  );
+  animation: shimmerFade 0.55s ease-out both;
+}
+
+@keyframes shimmerFade {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
