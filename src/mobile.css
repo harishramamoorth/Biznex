@@ -1,0 +1,584 @@
+/* ═══════════════════════════════════════════════════════════
+   BIZNEX — GLOBAL MOBILE RESPONSIVE FIXES
+   Covers: Navbar, Hero, Services, WhyBizNex, ProblemSolutions,
+           SocialProof, ScaleTrain, FAQ, HowWeWork, Pricing,
+           PaymentModal, Footer
+   Breakpoints: 640px (sm), 768px (md), 1024px (lg)
+═══════════════════════════════════════════════════════════ */
+
+/* ── Base resets ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Prevent horizontal overflow globally ── */
+body, #root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ════════════════════════════
+   NAVBAR
+════════════════════════════ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Mobile dropdown menu slide animation */
+  .mobile-menu {
+    animation: slideDown 0.25s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ════════════════════════════
+   HERO SECTION
+════════════════════════════ */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 100svh; /* safe viewport height on mobile */
+    padding-top: 5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  #hero .max-w-4xl {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Hero heading — scale down on mobile */
+  #hero h1 {
+    font-size: 2.4rem !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  #hero p {
+    font-size: 1rem !important;
+    margin-top: 1.25rem !important;
+  }
+
+  /* CTA buttons stacked */
+  #hero .flex.flex-wrap {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0.875rem !important;
+    margin-top: 2rem !important;
+  }
+
+  /* Stats row — wrap nicely */
+  #hero .gap-8 {
+    gap: 1.25rem !important;
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+
+  /* Video overlay — stronger coverage so text always readable */
+  .hero-container .absolute.inset-0.bg-gradient-to-r {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.92) 0%,
+      rgba(255,255,255,0.88) 60%,
+      rgba(255,255,255,0.80) 100%
+    ) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero h1 {
+    font-size: 2rem !important;
+  }
+}
+
+/* ════════════════════════════
+   WHY BIZNEX
+════════════════════════════ */
+@media (max-width: 768px) {
+  .why-biznex {
+    padding: 3.5rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 1rem !important;
+    padding: 0 0.5rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .feature-image {
+    height: 220px !important;
+  }
+
+  .image-overlay {
+    left: 0.75rem !important;
+    bottom: 0.75rem !important;
+    padding: 0.4rem 0.75rem !important;
+    font-size: 0.75rem;
+  }
+}
+
+/* ════════════════════════════
+   SOCIAL PROOF (Stats)
+════════════════════════════ */
+@media (max-width: 640px) {
+  .social-proof {
+    padding: 2.5rem 1rem;
+  }
+
+  .social-proof-container {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .stat-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  .stat-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .social-proof-container {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ════════════════════════════
+   PROBLEM & SOLUTIONS
+════════════════════════════ */
+@media (max-width: 768px) {
+  .solutions-container {
+    padding: 3rem 1rem !important;
+  }
+
+  /* Prevent wide grid overflow */
+  .solutions-container .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .problem-card {
+    /* Remove left-only rounding on mobile */
+    border-radius: 1.25rem !important;
+  }
+
+  .problem-card:hover {
+    /* Disable x-shift on touch — just lift up */
+    transform: translateY(-4px) !important;
+  }
+}
+
+/* ════════════════════════════
+   SCALE TRAIN
+════════════════════════════ */
+@media (max-width: 640px) {
+  /* Stop label text clipping on small screens */
+  .train-stop span {
+    font-size: 0.65rem !important;
+    max-width: 48px;
+    text-align: center;
+  }
+
+  .train-track {
+    margin: 1.5rem 0 2rem !important;
+  }
+}
+
+/* ════════════════════════════
+   SERVICES SECTION
+════════════════════════════ */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 3.5rem 1rem;
+  }
+
+  .services-container {
+    padding: 0;
+  }
+
+  /* Service cards — single column */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+}
+
+/* ════════════════════════════
+   HOW WE WORK (Process)
+════════════════════════════ */
+@media (max-width: 768px) {
+  .how-we-work {
+    padding: 3.5rem 1rem;
+  }
+
+  /* Force single column */
+  .steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .step-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .step-title {
+    font-size: 1.4rem !important;
+  }
+
+  .step-description {
+    font-size: 0.92rem !important;
+  }
+
+  .step-details {
+    padding: 0.875rem 1rem;
+  }
+
+  /* Bottom CTA button — full width */
+  .bottom-cta .btn-primary {
+    display: block;
+    text-align: center;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* ════════════════════════════
+   FAQ SECTION
+════════════════════════════ */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 3.5rem 1rem 2.5rem !important;
+  }
+
+  .faq-inner {
+    max-width: 100%;
+  }
+
+  /* Ensure accordion answers don't overflow */
+  .faq-answer,
+  .faq-body {
+    font-size: 0.92rem !important;
+    line-height: 1.65;
+  }
+}
+
+/* ════════════════════════════
+   PRICING SECTION
+════════════════════════════ */
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 5rem 0 3.5rem !important;
+    min-height: auto !important;
+    align-items: flex-start !important;
+  }
+
+  .pricing-inner {
+    padding: 0 1rem !important;
+  }
+
+  .pricing-header {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .pricing-title {
+    font-size: clamp(1.8rem, 7vw, 2.6rem) !important;
+  }
+
+  .pricing-subtitle {
+    font-size: 0.95rem !important;
+  }
+
+  /* Cards stacked — single column */
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .pricing-card {
+    padding: 1.75rem 1.25rem !important;
+  }
+
+  /* Disable popular card elevation on mobile */
+  .pc-popular {
+    transform: none !important;
+  }
+
+  .pc-name {
+    font-size: 1.3rem !important;
+  }
+
+  .pc-price {
+    font-size: 2rem !important;
+  }
+
+  .pricing-note {
+    text-align: center;
+    flex-direction: column !important;
+    gap: 6px !important;
+    margin-top: 2rem !important;
+    font-size: 0.78rem !important;
+    padding: 0 1rem;
+  }
+}
+
+/* ════════════════════════════
+   PAYMENT MODAL
+════════════════════════════ */
+@media (max-width: 640px) {
+  .payment-modal {
+    /* Full-screen bottom sheet on mobile */
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92svh !important;
+    overflow-y: auto !important;
+    border-radius: 1.5rem 1.5rem 0 0 !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 1.5rem 1.25rem !important;
+    /* Add safe area padding for notched phones */
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  .payment-modal-overlay {
+    align-items: flex-end !important;
+  }
+
+  /* Drag handle visual indicator */
+  .payment-modal::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 9999px;
+    margin: 0 auto 1.25rem;
+  }
+}
+
+/* ════════════════════════════
+   FOOTER
+════════════════════════════ */
+@media (max-width: 768px) {
+  .footer-inner {
+    padding: 3rem 1.25rem 2rem !important;
+  }
+
+  .footer-newsletter {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 1.5rem 1.25rem !important;
+    gap: 1rem !important;
+  }
+
+  .footer-newsletter-form {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 0.75rem;
+  }
+
+  .input-wrapper {
+    width: 100% !important;
+  }
+
+  .input-wrapper input {
+    width: 100% !important;
+    font-size: 1rem; /* Prevent iOS zoom on focus */
+  }
+
+  .footer-newsletter-form button {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem 1rem !important;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1 !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+    gap: 0.75rem !important;
+  }
+
+  .footer-legal {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+  }
+}
+
+/* ════════════════════════════
+   TESTIMONIALS
+════════════════════════════ */
+@media (max-width: 640px) {
+  .testimonials-section,
+  .testimonials {
+    padding: 3rem 1rem !important;
+  }
+}
+
+/* ════════════════════════════
+   ABOUT PAGE
+════════════════════════════ */
+@media (max-width: 768px) {
+  .about-strip {
+    padding: 3rem 1rem !important;
+  }
+}
+
+/* ════════════════════════════
+   CTA SECTION
+════════════════════════════ */
+@media (max-width: 640px) {
+  .final-cta-section,
+  .cta-section {
+    padding: 3rem 1rem !important;
+  }
+
+  .final-cta-section h2,
+  .cta-section h2 {
+    font-size: 1.75rem !important;
+    line-height: 1.25;
+  }
+}
+
+/* ════════════════════════════
+   STICKY CTA BAR
+════════════════════════════ */
+@media (max-width: 640px) {
+  .sticky-cta {
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    bottom: 0.75rem !important;
+    border-radius: 1rem !important;
+    padding: 0.75rem 1rem !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    text-align: center;
+  }
+
+  .sticky-cta p {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ════════════════════════════
+   INPUT / FORM GLOBAL FIXES
+   (Prevents iOS auto-zoom on focus)
+════════════════════════════ */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* ════════════════════════════
+   TOUCH — Remove hover states
+   that look broken on mobile
+════════════════════════════ */
+@media (hover: none) {
+  .pricing-card:hover {
+    transform: none !important;
+  }
+  .feature-card:hover {
+    transform: none !important;
+  }
+  .step-card:hover {
+    transform: none !important;
+  }
+  .problem-card:hover {
+    transform: none !important;
+  }
+  .stat-card:hover {
+    transform: none !important;
+  }
+  .image-wrapper:hover {
+    transform: none !important;
+  }
+}
+
+/* ════════════════════════════
+   CONTACT PAGE
+════════════════════════════ */
+@media (max-width: 768px) {
+  .contact-section,
+  #contact {
+    padding: 3.5rem 1rem !important;
+  }
+
+  .contact-grid,
+  .contact-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* ════════════════════════════
+   PAGE TRANSITION WRAPPER
+════════════════════════════ */
+.page-transition-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════
+   PROGRESS BAR
+════════════════════════════ */
+@media (max-width: 640px) {
+  .progress-bar {
+    height: 3px !important;
+  }
+}
