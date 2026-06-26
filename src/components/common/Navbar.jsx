@@ -1,17 +1,30 @@
 import { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import logo from '../../assets/binexlogo.png';
 import './Navbar.css';
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
+    const { pathname } = useLocation();
 
+    // Close mobile menu on route change
+    useEffect(() => {
+        setMobileOpen(false);
+    }, [pathname]);
+
+    // Detect scroll for glass effect
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 30);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        document.body.style.overflow = mobileOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileOpen]);
 
     const links = [
         { to: '/', label: 'Home' },
@@ -22,55 +35,78 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className={`navbar fixed top-0 left-0 right-0 z-50 px-6 py-3 ${scrolled ? 'scrolled' : ''}`}>
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <Link to="/" className="flex items-center">
-                    <img src={logo} alt="BizNex Logo" className="h-10 w-auto object-contain" />
-                </Link>
+        <>
+            <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+                <div className="navbar-inner">
+                    {/* Logo */}
+                    <Link to="/" className="navbar-logo">
+                        <img src={logo} alt="BizNex Logo" />
+                    </Link>
 
-                <div className="hidden md:flex items-center gap-8">
-                    {links.map((l) => (
+                    {/* Desktop links */}
+                    <div className="navbar-desktop">
+                        {links.map((l) => (
+                            <NavLink
+                                key={l.to}
+                                to={l.to}
+                                end={l.to === '/'}
+                                className={({ isActive }) =>
+                                    `nav-link ${isActive ? 'active' : ''}`
+                                }
+                            >
+                                {l.label}
+                            </NavLink>
+                        ))}
+                        <Link to="/contact" className="navbar-cta">
+                            Contact
+                        </Link>
+                    </div>
+
+                    {/* Hamburger button */}
+                    <button
+                        className={`hamburger ${mobileOpen ? 'open' : ''}`}
+                        onClick={() => setMobileOpen(!mobileOpen)}
+                        aria-label="Toggle menu"
+                        aria-expanded={mobileOpen}
+                    >
+                        <span /><span /><span />
+                    </button>
+                </div>
+            </nav>
+
+            {/* Mobile drawer overlay */}
+            <div
+                className={`mobile-overlay ${mobileOpen ? 'visible' : ''}`}
+                onClick={() => setMobileOpen(false)}
+            />
+
+            {/* Mobile drawer */}
+            <div className={`mobile-drawer ${mobileOpen ? 'open' : ''}`}>
+                <div className="mobile-drawer-inner">
+                    {links.map((l, i) => (
                         <NavLink
                             key={l.to}
                             to={l.to}
+                            end={l.to === '/'}
+                            style={{ animationDelay: `${i * 0.06}s` }}
                             className={({ isActive }) =>
-                                `nav-link text-sm font-semibold transition-colors ${isActive ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'}`
+                                `mobile-link ${isActive ? 'active' : ''}`
                             }
+                            onClick={() => setMobileOpen(false)}
                         >
                             {l.label}
                         </NavLink>
                     ))}
-                    <Link to="/contact" className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition-all hover:shadow-lg hover:shadow-blue-600/30">
-                        Contact
+                    <Link
+                        to="/contact"
+                        className="mobile-cta"
+                        onClick={() => setMobileOpen(false)}
+                        style={{ animationDelay: `${links.length * 0.06}s` }}
+                    >
+                        Contact Us
                     </Link>
                 </div>
-
-                <button
-                    className="md:hidden text-slate-700 text-2xl"
-                    onClick={() => setMobileOpen(!mobileOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <i className={`fas ${mobileOpen ? 'fa-times' : 'fa-bars'}`} />
-                </button>
             </div>
-
-            <div className={`md:hidden mt-3 pb-4 space-y-3 ${mobileOpen ? 'block' : 'hidden'}`}>
-                {links.map((l) => (
-                    <NavLink
-                        key={l.to}
-                        to={l.to}
-                        className={({ isActive }) =>
-                            `block font-medium ${isActive ? 'text-blue-600' : 'text-slate-700'} hover:text-blue-600 transition-colors`
-                        }
-                        onClick={() => setMobileOpen(false)}
-                    >
-                        {l.label}
-                    </NavLink>
-                ))}
-                <Link to="/contact" className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-700 transition-colors" onClick={() => setMobileOpen(false)}>
-                    Contact
-                </Link>
-            </div>
-        </nav>
+        </>
     );
-}
+}
